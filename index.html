@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #container {
+                margin:auto; 
+                text-align:center;
+            
+            }
+            
+            #imgbox {
+                margin:auto;
+                max-width: 940px;
+                background: #b690d4;
+                min-height: 200px;
+
+            }
+
+            img {
+            padding: 2px;
+            display: inline-block;
+            }
+            
+            img:hover {opacity: 1; background: #e4c3ec;}
+            
+            img.hide { display: none; }
+        </style>
+    </head>
+
+<body>
+<div id="container">
+<h2>tradepile card filter</h2>
+
+    <!-- search box-->
+    <input type="text" id="cardsearchbox" placeholder="Search..." onkeyup="cardSearch()"/>
+
+
+<p>the search box, it does nothing</p>
+<div id="imgbox"><p id="images"></p></div>
+
+
+<button onclick="hideImages()">hide images</button>
+<button onclick="unhideImages()">unhide images</button>
+<p> these hide and unhide images to prove that the css works</p>
+
+
+<script>
+
+const cards = ["2ndform01", "4minutes09", "abyss06", "amarcian20", "aoikishin19", "arcticwolf17", "ardent13", "ariadoney13", "armored18", "asphalt09", "authentic01", "beguile15", "bloodline19", "bloom11", "brainburst05", "breaktime12", "brown17", "burmecia20", "cakes12", "camembert16", "chalice08", "chaoscalibur18", "chinatown05", "chomechome13", "crafts09", "crossveins19", "cupnoodles16", "daitsuren18", "darksun03", "daymare17", "divinefist05", "dogending19", "dreamisland16", "dreiklauen06", "drillspear11", "dunscaith01", "dunscaith06", "dwn-03916", "elocution06", "equality12", "extinction05", "eyeball15", "fabricated11", "face03", "fashionable19", "fermata01", "fiancee16", "firebuster09", "food16", "freebird18", "gald19", "gambles06", "gatlingpin13", "ghibli19", "gianthornet07", "glasses03", "graveborns08", "haikei14", "hakama02", "haybales08", "headphones02", "hell14", "honeytachi09", "hosoyan05", "housepet09", "hurricane08", "iceblue18", "idiotson15", "idolfan10", "idolizer14", "idolizer20", "infirmary20", "insignia05", "interceptor08", "invibelle16", "jingling02", "juice11", "kasshin09", "kawayoo12", "koutei15", "kurikara05", "kyous15", "landlord17", "lastkiss07", "leader08", "level99916", "libido11", "lightside02", "macherie02", "mahou02", "maleantags17", "message15", "midland05", "mindset12", "mirage05", "mooncell10", "motorola17", "murakumo09", "musicbox19", "mystletainn02", "nakisawa18", "nega01", "nekomimi06", "ninjas04", "orbis14", "ossan09", "ostia06", "picnic04", "pigtails19", "pink14", "pinkshadow18", "ponytail15", "poorthing07", "potential11", "prodigy14", "pugilist16", "rapier04", "receptionist02", "relationer02", "restricted02", "righteye05", "running02", "sea16", "secretrealm11", "seitokai05", "sekit19", "seminary09", "serpent08", "shattered09", "shortcuts20", "sigmund06", "sirix04", "sisters18", "skydress06", "slumberland13", "sneeze20", "spatial17", "speedroid13", "spellcaster02", "spirited16", "stinger14", "strangemen02", "suba-tomo20", "summer12", "surgical07", "taranis17", "thorough16", "thousand06", "translator11", "umn20", "unseen05", "untamed12", "usagimimi06", "videogames12", "walking04", "weapon06", "whitelily03", "whitesnake10", "wilders04", "witch20", "wutai03", "zombie06"];
+
+const box = document.getElementById("cardsearchbox"); // search box
+const cardsLen = cards.length;
+
+
+// create images from cards
+var images = '<div id="cards">';
+for (let i = 0; i < cardsLen; i++) {
+  images += '<img src="https://raw.githubusercontent.com/ryuusenkatcg/ryuusenkatcg/main/cards/' + cards[i] + '.gif" title="'+ cards[i] + '">';
+}
+
+document.getElementById("images").innerHTML = images;
+
+// console.log(images) FOR TESTING //
+const list = document.querySelectorAll("#cards img") // finds all imgs
+
+
+
+function cardSearch() {
+   
+    // get current search term
+    let search = box.value.toLowerCase();
+    
+console.log(search) // shows that inputs are being made into lowercase 
+
+// loop thru list items - only show those that match search 
+    for (let i = 0; i < cardsLen; i++) {
+          if ((cards[i]).indexOf(search) == -1) { (list[i]).classList.add("hide"); }
+        else { (list[i]).classList.remove("hide"); } 
+    }
+}
+</script>
+</div>
+</body>
+</html>
