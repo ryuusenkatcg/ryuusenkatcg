@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            body{
+            body {
                 font-family:verdana;
                 background-color: #866e99;
             }
@@ -22,14 +22,42 @@
 
             }
 
+            #cardsearchbox {
+                width: 10%;
+                padding: 8px;
+                border: 1px solid rgb(107, 106, 107);
+            }
+            #reset {
+                padding: 10px 15px;
+                text-decoration: none;
+                margin: 4px 2px;
+                background-color: #652ca5;
+                border-radius: 8px;
+                border-style: none;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-block;
+                font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                height: 40px;
+                line-height: 20px;
+            }
+           
+
             img {
-            padding: 2px;
-            display: inline-block;
+                padding: 2px;
+                display: inline-block;
             }
             
-            img:hover {opacity: 1; background: #e4c3ec;}
+            img:hover {
+                opacity: 1; background: #898bf3;
+            }
             
-            img.hide { display: none; }
+            img.hide { 
+                display: none; 
+            }
+
         </style>
     </head>
 
@@ -40,6 +68,7 @@
 
     <!-- search box-->
     <input type="text" id="cardsearchbox" placeholder="Search..." onkeyup="cardSearch()"/>
+    <input type="button" id="reset" value="Clear" onclick="reset()"/>
 
 
 <p>Type in part of a card name.</p>
@@ -90,7 +119,16 @@ var counter = 0;
     }
 
     document.getElementById("searchresults").innerHTML = 'Search returned ' + counter + ' results.';
+}
 
+function reset(){
+                    document.getElementById('searchresults').innerHTML = "";
+                    const inputField = document.getElementById("cardsearchbox");
+                    inputField.value = "";
+
+                    for (let i = 0; i < cardsLen; i++) {
+           { (list[i]).classList.remove("hide")  }
+         }
 }
 </script>
 </div>
