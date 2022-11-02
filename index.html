@@ -2,6 +2,11 @@
 <html>
     <head>
         <style>
+            body{
+                font-family:verdana;
+                background-color: #866e99;
+            }
+            
             #container {
                 margin:auto; 
                 text-align:center;
@@ -10,9 +15,10 @@
             
             #imgbox {
                 margin:auto;
-                max-width: 940px;
-                background: #b690d4;
+                max-width: 1500px;
+                background: #d4c7dd;
                 min-height: 200px;
+                padding: 10px;
 
             }
 
@@ -30,19 +36,18 @@
 <body>
 <div id="container">
 <h2>tradepile card filter</h2>
+<h3><div id="cardcount"></div></h3>
 
     <!-- search box-->
     <input type="text" id="cardsearchbox" placeholder="Search..." onkeyup="cardSearch()"/>
 
 
-<p>the search box, it does nothing</p>
-<div id="imgbox"><p id="images"></p></div>
-
-
-<button onclick="hideImages()">hide images</button>
-<button onclick="unhideImages()">unhide images</button>
-<p> these hide and unhide images to prove that the css works</p>
-
+<p>Type in part of a card name.</p>
+<div id="imgbox">
+    <p id="searchresults"></p>
+    <p id="images"></p>
+        
+</div>
 
 <script>
 
@@ -51,11 +56,12 @@ const cards = ["2ndform01", "4minutes09", "abyss06", "amarcian20", "aoikishin19"
 const box = document.getElementById("cardsearchbox"); // search box
 const cardsLen = cards.length;
 
+document.getElementById("cardcount").innerHTML = "There are " + cardsLen + " cards in the tradepile.";
 
 // create images from cards
 var images = '<div id="cards">';
 for (let i = 0; i < cardsLen; i++) {
-  images += '<img src="https://raw.githubusercontent.com/ryuusenkatcg/ryuusenkatcg/main/cards/' + cards[i] + '.gif" title="'+ cards[i] + '">';
+  images += '<img src="https://ryuusenka.neocities.org/cards/' + cards[i] + '.gif" title="'+ cards[i] + '">';
 }
 
 document.getElementById("images").innerHTML = images;
@@ -73,10 +79,18 @@ function cardSearch() {
 console.log(search) // shows that inputs are being made into lowercase 
 
 // loop thru list items - only show those that match search 
+var counter = 0;
     for (let i = 0; i < cardsLen; i++) {
-          if ((cards[i]).indexOf(search) == -1) { (list[i]).classList.add("hide"); }
-        else { (list[i]).classList.remove("hide"); } 
+          if (cards[i].includes(search) == false) { 
+              list[i].classList.add("hide"); 
+        } else { 
+              list[i].classList.remove("hide")
+              counter++; 
+        } 
     }
+
+    document.getElementById("searchresults").innerHTML = 'Search returned ' + counter + ' results.';
+
 }
 </script>
 </div>
